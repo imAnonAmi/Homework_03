@@ -23,7 +23,7 @@ var eligibleChars
 // First we need to define the password parameters like length and what can be included
 // Has to be at least 8, but not more than 128. Need to force it to be an integer.
 
-function generatePassword() {
+function definePassword() {
   var lengthPW = parseInt(prompt("How many characters do you want your password to be? Minimum 8, maximum 128")); // <<Double parentheses dammit! Use the VS tools. Don't waste time hunting.
 
 if (lengthPW < 8) {
@@ -45,20 +45,22 @@ var specialInclude = confirm("Would you like your password to include special ch
 
 // I think I need to make an object that holds all of these?
 
-//Killed object here
-
+var passwordChoices = {
+  lengthPW: lengthPW, // <<properties have commas, not semi-colons. Save yourself 15 minutes of frustration and remember that next time
+  lowerInclude: lowerInclude,
+  upperInclude: upperInclude,
+  numInclude: numInclude,
+  specialInclude: specialInclude
+};
+  return passwordChoices;
+}
 // Need some if statements here to determine what can go into eligibleChars and to assign one of each to pwHolder AND decrement length by 1 for each time this happens
 
 // This should see if lower case is included, add one such character to password if so, add all lower case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
 
-if (lowerInclude === true) { 
-  var temp = Math.floor(Math.random()*lower.length); 
-  console.log(temp);
-  var giveIt=[lower.indexOf(temp)]; 
-  console.log(giveIt);
-  pwHolder.push('giveIt');
+if (lowerInclude==true) { pwHolder.push(lower[Math.floor(math.random())*lower.length]);
   eligibleChars=eligibleChars.concat(lower);
-  lengthPW===lengthPW-1;
+  lengthPW===lengthPW - 1;
   }
 
   // This should see if upper case is included, add one such character to password if so, add all upper case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
@@ -84,7 +86,7 @@ if (lowerInclude === true) {
   for (count = 1; count <= lengthPW; count--) {
     pwHolder.concat(eligibleChars);
   }
-}
+
 
 
 // ASK ABOUT THE BELOW IN CLASS. NO IDEA.
@@ -94,7 +96,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = definePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;

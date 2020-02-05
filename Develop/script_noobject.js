@@ -51,14 +51,9 @@ var specialInclude = confirm("Would you like your password to include special ch
 
 // This should see if lower case is included, add one such character to password if so, add all lower case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
 
-if (lowerInclude === true) { 
-  var temp = Math.floor(Math.random()*lower.length); 
-  console.log(temp);
-  var giveIt=[lower.indexOf(temp)]; 
-  console.log(giveIt);
-  pwHolder.push('giveIt');
+if (lowerInclude===true) { pwHolder.push(lower[Math.floor(math.random())*lower.length]);
   eligibleChars=eligibleChars.concat(lower);
-  lengthPW===lengthPW-1;
+  lengthPW===lengthPW - 1;
   }
 
   // This should see if upper case is included, add one such character to password if so, add all upper case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
