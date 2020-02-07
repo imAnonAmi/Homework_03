@@ -1,4 +1,4 @@
-//This is the working version, including overwriting previous vars when generate button is pushed. Finally. Also saved as script_working_dirty, while I take out superfluous comments.
+//This is the working version, including overwriting previous vars when generate button is pushed. Finally. Vars declared globally, apart pwHolder (inside function generatePassword). 
 
 // Possible lower case characters
 var lower = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -15,17 +15,13 @@ var special = ["!","@","#","$","%","^","&","*","(",")","_","-",":",";","<",">"];
 // Defining a variable, that will become the array that holds all eligible characters to randomly select from
 var eligibleChars=[];
 
-//TRYING TO DECLARE finalPW up here so it passes through to writePassword function??
+// Defining final PW string, in which the pwHolder array is joined together before being returned out of function generatePassword to document
 var finalPW = "";
 
-// MAKING IT WORK (probably)
-
-// First we need to define the password parameters like length and what can be included
-// Has to be at least 8, but not more than 128. Need to force it to be an integer.
-
+// Most of the work done in this function
 function generatePassword() {
 
-// Defining a variable, that will become the array, that the password will be generated into 
+// Defining the array that the password will be generated into. Then setting it and eligibleChars array lengths to 0 so that repeat usage will generate consistent results. 
 var pwHolder=[];
   function empty() {
     pwHolder.length = 0;
@@ -33,16 +29,19 @@ var pwHolder=[];
   }
   empty();
 
-  var lengthPW = parseInt(prompt("How many characters do you want your password to be? Minimum 8, maximum 128")); // <<Double parentheses dammit! Use the VS tools. Don't waste time hunting.
+// Determining password length. Forcing conformity to parameters.
+  var lengthPW = parseInt(prompt("How many characters do you want your password to be? Minimum 8, maximum 128")); // 
 
 if (lengthPW < 8) {
   alert("Your password must be at least 8 characters long. Please try again.");
+  return;
 } 
 if (lengthPW > 128) {
   alert("Your password can not be over 128 characters long. Please try again.");
+  return;
 }
 
-// Ask user questions to determine what can go into the PW or not. Need to make new vars for this, not overwrite your first ones!!! Remember that.
+// Ask user questions to determine what can go into the PW or not.
 
 var lowerInclude = confirm("Would you like your password to include lower case letters?");
 
@@ -52,11 +51,15 @@ var numInclude = confirm("Would you like your password to include numbers?");
 
 var specialInclude = confirm("Would you like your password to include special characters?");
 
-// I think I need to make an object that holds all of these?
+// Adding some logic to force people to confirm at least one of the above character types for their password
 
-//Killed object here
+if (lowerInclude == false && upperInclude == false && numInclude == false && specialInclude == false) {
+  alert("Your password must contain at least one of the defined types of characters. Please try again.");
+  return;
+}
+// These if statements are contingent on answers above and determine what can go into eligibleChars AND ALSO assign one of each to pwHolder AND decrement length by 1 for each time this happens (length is called in for statement at end of function to fill in remaining characters).
 
-// Need some if statements here to determine what can go into eligibleChars and to assign one of each to pwHolder AND decrement length by 1 for each time this happens
+// Leaving all my console.logs in as a reminder when I review this code of how to work through non-functioning code line by line, but they could be deleted for cleaner code.
 
 // This should see if lower case is included, add one such character to password if so, add all lower case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
 
@@ -72,10 +75,9 @@ if (lowerInclude == true) {
   lengthPW--;
   console.log(lengthPW);
   }
-  // YES GODDAMMIT! ^^THIS FRICKIN' WORKS!
 
-  // MODIFYING THE BELOW TO USE SAME LOGIC AS ABOVE, AND CONSOLE LOGGING ALONG THE WAY
-  // This should see if upper case is included, add one such character to password if so, add all upper case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
+// This should see if upper case is included, add one such character to password if so, add all upper case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
+
   if (upperInclude == true) { 
     var temp = Math.floor(Math.random()*upper.length); 
     console.log(temp);
@@ -88,9 +90,8 @@ if (lowerInclude == true) {
     lengthPW--;
     console.log(lengthPW);
     }
-  // HELL YEAH! SUCK IT UPPERCASE!
+// This should see if numbers are included, add one number to password if so, add all numbers to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
 
-  // This should see if numbers are included, add one number to password if so, add all numbers to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
   if (numInclude == true) { 
     var temp = Math.floor(Math.random()*num.length); 
     console.log(temp);
@@ -104,7 +105,8 @@ if (lowerInclude == true) {
     console.log(lengthPW);
     }
   
-  // This should see if special chars are included, add one such character to password if so, add all special characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
+// This should see if special chars are included, add one such character to password if so, add all special characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
+
   if (specialInclude == true) { 
     var temp = Math.floor(Math.random()*special.length); 
     console.log(temp);
@@ -118,7 +120,8 @@ if (lowerInclude == true) {
     console.log(lengthPW);
     }
 
-  // This should define a count based on remaining chars from lengthPW, then cycle through all eligibleChars to complete the password. Maybe.
+// Define count based on remaining chars from lengthPW, then cycle through all eligibleChars to complete the password.
+
   var count;
   for (count = 1; count<=lengthPW; count++) {
     var temp = Math.floor(Math.random()*eligibleChars.length); 
@@ -128,25 +131,15 @@ if (lowerInclude == true) {
     pwHolder.push(giveIt);
     console.log(pwHolder);
     }
-// SO FAR, SO F'IN GOOD!!!
-// Take the above array, pwHolder, join it into one string variable, getting it ready to serve to page
+
+// Take the above array, pwHolder, joins it into one string variable, getting it ready to serve to page. Replaces comma separators with nothing via ("")
+
    var finalPW = pwHolder.join("");
   console.log(finalPW);
-//YES! GODDAMN COMMA SEPARATORS. SUCK IT! MY QUOTES DEFEAT YOU!
-//alert(finalPW);
-
-
-//Finally! Got the minimum requirement and gave alert. Can not figure out how to write to screen despite 1+ hours messing around with below.
-//Maybe I use return?
 
 return finalPW;
 }
-
-//WHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!! 
-
-
-
-  
+ 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 

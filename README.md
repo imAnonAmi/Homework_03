@@ -1,6 +1,9 @@
 # Homework_03
 Repo. for third homework assignment, Random Password Generator.
 
+## Purpose
+This Random Password Generator will prompt the user to define a series of parameters, from which it will generate a conformant randomized password. By utilizing this application, the user can create a virtually infinite number of passwords on the fly, and include or exclude character types as necessary.
+
 ## Requirements
 1. Prompt user for password length.
 2. Receive user confirmation as to which of the following character types are to be included in the password: lowercase, uppercase, numbers, special characters.
@@ -8,6 +11,11 @@ Repo. for third homework assignment, Random Password Generator.
 4. Ensure that no characters from excluded character types are present.
 5. Generate password that is compliant with above conditions.
 6. Write this password to screen, or display via an alert.
+
+## Results
+Final version achieves all of the above requirements, including guaranteeing compliance by forcing user to stay within defined parameters. On top of this, it works repeatedly without refreshing/reloading the browser by resetting array lengths as part of the function. This took me a loooooonnnnnngggg time to figure out, but I think it makes for a much more elegant solution than hitting refresh every time.
+
+--Everything below this was part of my documenting my thought process, and is offered for reference but does not require review--
 
 ## Hypotheses
 I think that I can use the confirmation of variables to enable/disable properties in an object type that includes all potential character types, and then run a function directed by a for statement (password length), to build the complete password.
