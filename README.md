@@ -17,9 +17,11 @@ I also need to ensure at least one character, so I may need to force write the i
 At the end, once I have enough characters of the appropriate type, perhaps I need to run a randomizing function of some sort to mix them up?
 
 ## To Research
-1. Confirm whether or not I can turn properties on/off, make char sets active/inactive using confirms.
-2. See if there is a command to randomize a string once assembled.
+1. Confirm whether or not I can turn properties on/off, make char sets active/inactive using confirms. YES
+2. See if there is a command to randomize a string once assembled. YES
+3. 2/4/2020- Figure out how to make the damn push or concat function work. Simplify code, break into smaller bits. USE CONSOLE LOG TO CONFIRM VALUES ARE BEING PASSED ON per Tim.
 
 ### Commit History
 1. Initial commit: Generation of repo. and creation of base Readme.md
 2. Getting started: Uploading source files (unworked), this Readme, and .jpeg of pseudo code notes
+NOT MODIFYING THIS ANYMORE. IT'S ALL CONTAINED IN THE REPO MAKING THIS A REDUNDANT EXERCISE.
