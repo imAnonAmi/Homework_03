@@ -54,7 +54,7 @@ var specialInclude = confirm("Would you like your password to include special ch
 
 // This should see if lower case is included, add one such character to password if so, add all lower case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
 
-if (lowerInclude === true) { 
+if (lowerInclude == true) { 
   var temp = Math.floor(Math.random()*lower.length); 
   console.log(temp);
   var giveIt=lower[temp];
@@ -70,7 +70,7 @@ if (lowerInclude === true) {
 
   // MODIFYING THE BELOW TO USE SAME LOGIC AS ABOVE, AND CONSOLE LOGGING ALONG THE WAY
   // This should see if upper case is included, add one such character to password if so, add all upper case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
-  if (upperInclude === true) { 
+  if (upperInclude == true) { 
     var temp = Math.floor(Math.random()*upper.length); 
     console.log(temp);
     var giveIt=upper[temp];
@@ -85,7 +85,7 @@ if (lowerInclude === true) {
   // HELL YEAH! SUCK IT UPPERCASE!
 
   // This should see if numbers are included, add one number to password if so, add all numbers to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
-  if (numInclude === true) { 
+  if (numInclude == true) { 
     var temp = Math.floor(Math.random()*num.length); 
     console.log(temp);
     var giveIt=num[temp];
@@ -99,7 +99,7 @@ if (lowerInclude === true) {
     }
   
   // This should see if special chars are included, add one such character to password if so, add all special characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
-  if (specialInclude === true) { 
+  if (specialInclude == true) { 
     var temp = Math.floor(Math.random()*special.length); 
     console.log(temp);
     var giveIt=special[temp];
@@ -124,7 +124,7 @@ if (lowerInclude === true) {
     }
 // SO FAR, SO F'IN GOOD!!!
 // Take the above array, pwHolder, join it into one string variable, getting it ready to serve to page
-  var finalPW = pwHolder.join("");
+   var finalPW = pwHolder.join("");
   console.log(finalPW);
 //YES! GODDAMN COMMA SEPARATORS. SUCK IT! MY QUOTES DEFEAT YOU!
 //alert(finalPW);
@@ -132,6 +132,7 @@ if (lowerInclude === true) {
 
 //Finally! Got the minimum requirement and gave alert. Can not figure out how to write to screen despite 1+ hours messing around with below.
 //Maybe I use return?
+
 return finalPW;
 }
 
@@ -146,6 +147,7 @@ var generateBtn = document.querySelector("#generate");
 // Write password to the #password input
 
 function writePassword() {
+ 
 var password = generatePassword();
 var passwordText = document.querySelector("#password");
 
@@ -154,4 +156,5 @@ passwordText.value = password;
 }
 
 // Add event listener to generate button
+
 generateBtn.addEventListener("click", writePassword);
