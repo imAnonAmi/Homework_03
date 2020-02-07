@@ -1,4 +1,4 @@
-//This is the working version, including overwriting previous vars when generate button is pushed. Finally. Also saved as script_working_dirty, while I take out superfluous comments.
+// VARIABLE DECLARATIONS
 
 // Possible lower case characters
 var lower = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
@@ -12,11 +12,14 @@ var num = [0,1,2,3,4,5,6,7,8,9];
 // Possible special characters
 var special = ["!","@","#","$","%","^","&","*","(",")","_","-",":",";","<",">"];
 
+// Defining a variable, that will become the array, that the password will be generated into 
+var pwHolder=[];
+
 // Defining a variable, that will become the array that holds all eligible characters to randomly select from
 var eligibleChars=[];
 
 //TRYING TO DECLARE finalPW up here so it passes through to writePassword function??
-var finalPW = "";
+var finalPW=("");
 
 // MAKING IT WORK (probably)
 
@@ -24,15 +27,6 @@ var finalPW = "";
 // Has to be at least 8, but not more than 128. Need to force it to be an integer.
 
 function generatePassword() {
-
-// Defining a variable, that will become the array, that the password will be generated into 
-var pwHolder=[];
-  function empty() {
-    pwHolder.length = 0;
-    eligibleChars.length = 0;
-  }
-  empty();
-
   var lengthPW = parseInt(prompt("How many characters do you want your password to be? Minimum 8, maximum 128")); // <<Double parentheses dammit! Use the VS tools. Don't waste time hunting.
 
 if (lengthPW < 8) {
