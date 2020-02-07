@@ -13,10 +13,13 @@ var num = [0,1,2,3,4,5,6,7,8,9];
 var special = ["!","@","#","$","%","^","&","*","(",")","_","-",":",";","<",">"];
 
 // Defining a variable, that will become the array, that the password will be generated into 
-var pwHolder
+var pwHolder=[];
 
 // Defining a variable, that will become the array that holds all eligible characters to randomly select from
-var eligibleChars
+var eligibleChars=[];
+
+//TRYING TO DECLARE finalPW up here so it passes through to writePassword function??
+var finalPW=("");
 
 // MAKING IT WORK (probably)
 
@@ -54,50 +57,99 @@ var specialInclude = confirm("Would you like your password to include special ch
 if (lowerInclude === true) { 
   var temp = Math.floor(Math.random()*lower.length); 
   console.log(temp);
-  var giveIt=[lower.indexOf(temp)]; 
+  var giveIt=lower[temp];
   console.log(giveIt);
-  pwHolder.push('giveIt');
+  pwHolder.push(giveIt);
+  console.log(pwHolder);
   eligibleChars=eligibleChars.concat(lower);
-  lengthPW===lengthPW-1;
+  console.log(eligibleChars);
+  lengthPW--;
+  console.log(lengthPW);
   }
+  // YES GODDAMMIT! ^^THIS FRICKIN' WORKS!
 
+  // MODIFYING THE BELOW TO USE SAME LOGIC AS ABOVE, AND CONSOLE LOGGING ALONG THE WAY
   // This should see if upper case is included, add one such character to password if so, add all upper case characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
-  if (upperInclude===true) { pwHolder.push(upper[Math.floor(math.random())*upper.length]);
+  if (upperInclude === true) { 
+    var temp = Math.floor(Math.random()*upper.length); 
+    console.log(temp);
+    var giveIt=upper[temp];
+    console.log(giveIt);
+    pwHolder.push(giveIt);
+    console.log(pwHolder);
     eligibleChars=eligibleChars.concat(upper);
-    lengthPW===lengthPW - 1;
+    console.log(eligibleChars);
+    lengthPW--;
+    console.log(lengthPW);
     }
+  // HELL YEAH! SUCK IT UPPERCASE!
 
   // This should see if numbers are included, add one number to password if so, add all numbers to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
-  if (numInclude===true) { pwHolder.push(num[Math.floor(math.random())*num.length]);
+  if (numInclude === true) { 
+    var temp = Math.floor(Math.random()*num.length); 
+    console.log(temp);
+    var giveIt=num[temp];
+    console.log(giveIt);
+    pwHolder.push(giveIt);
+    console.log(pwHolder);
     eligibleChars=eligibleChars.concat(num);
-    lengthPW===lengthPW - 1;
+    console.log(eligibleChars);
+    lengthPW--;
+    console.log(lengthPW);
     }
   
   // This should see if special chars are included, add one such character to password if so, add all special characters to eligible characters if so, and decrease the overall length of the password by 1 for future calculations and for statements.
-  if (specialInclude===true) { pwHolder.push(special[Math.floor(math.random())*special.length]);
+  if (specialInclude === true) { 
+    var temp = Math.floor(Math.random()*special.length); 
+    console.log(temp);
+    var giveIt=special[temp];
+    console.log(giveIt);
+    pwHolder.push(giveIt);
+    console.log(pwHolder);
     eligibleChars=eligibleChars.concat(special);
-    lengthPW===lengthPW - 1;
+    console.log(eligibleChars);
+    lengthPW--;
+    console.log(lengthPW);
     }
 
   // This should define a count based on remaining chars from lengthPW, then cycle through all eligibleChars to complete the password. Maybe.
   var count;
-  for (count = 1; count <= lengthPW; count--) {
-    pwHolder.concat(eligibleChars);
-  }
+  for (count = 1; count<=lengthPW; count++) {
+    var temp = Math.floor(Math.random()*eligibleChars.length); 
+    console.log(temp);
+    var giveIt=eligibleChars[temp];
+    console.log(giveIt);
+    pwHolder.push(giveIt);
+    console.log(pwHolder);
+    }
+// SO FAR, SO F'IN GOOD!!!
+// Take the above array, pwHolder, join it into one string variable, getting it ready to serve to page
+  var finalPW = pwHolder.join("");
+  console.log(finalPW);
+//YES! GODDAMN COMMA SEPARATORS. SUCK IT! MY QUOTES DEFEAT YOU!
+//alert(finalPW);
+
+
+//Finally! Got the minimum requirement and gave alert. Can not figure out how to write to screen despite 1+ hours messing around with below.
+//Maybe I use return?
+return finalPW;
 }
 
+//WHOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO!!!!!!!!! 
 
-// ASK ABOUT THE BELOW IN CLASS. NO IDEA.
 
+
+  
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+function writePassword() {
+var password = generatePassword();
+var passwordText = document.querySelector("#password");
+
+passwordText.value = password;
 
 }
 
